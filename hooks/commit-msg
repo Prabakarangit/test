@@ -2,3 +2,7 @@
 
 echo "***** commit-msg file is working! ******"
 
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+echo local_branch
+
