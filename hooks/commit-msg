@@ -6,6 +6,8 @@ local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
 commit_message=$(cat "$1")
 
+echo "$local_branch" | grep -oP '(?<=feature/).*(?=-)'
+
 echo $local_branch
 echo $commit_message
 
