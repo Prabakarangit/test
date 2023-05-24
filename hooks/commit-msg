@@ -4,10 +4,12 @@ echo "***** commit-msg file is working! ******"
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-commit_message=$(cat "$1")
+commit_message=$1
 
-echo "$local_branch" | grep -oP '(?<=feature/).*(?=-)'
 
-echo $local_branch
-echo $commit_message
+# Throw error if the message is empty
+if [[ -z $(grep '[^[:space:]]' $commit_message) ]] ; then
+    echo "You can't just commit without a message !!" >&2
+    exit 1
+fi
 
