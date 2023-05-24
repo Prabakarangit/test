@@ -4,11 +4,11 @@ echo "***** commit-msg file is working! ******"
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-commit_message=$1
+COMMIT_MSG_FILE=$1
 
 
 # Throw error if the message is empty
-if [[ -z $(grep '[^[:space:]]' $commit_message) ]] ; then
+if [[ -z $(grep '[^[:space:]]' $COMMIT_MSG_FILE) ]] ; then
     echo "You can't just commit without a message !!" >&2
     exit 1
 fi
