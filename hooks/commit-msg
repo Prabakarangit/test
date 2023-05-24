@@ -4,8 +4,6 @@ echo "***** commit-msg file is working! ******"
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-commit_message=$(cat "$1")
-
 commit_message_file=$1
 
 
@@ -16,7 +14,7 @@ if [[ -z $(grep '[^[:space:]]' $commit_message_file) ]] ; then
 fi
 
 # regex to validate in commit msg
-commit_regex='(wap-[0-9]+|merge)'
+commit_regex='(ALS-[0-9]+)'
 error_msg="Aborting commit. Your commit message is missing either a JIRA Issue ('WAP-1111') or 'Merge'"
 
 if ! grep -iqE "$commit_regex" "$commit_message_file"; then
