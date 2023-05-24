@@ -2,4 +2,3 @@
 
 echo "***** commit-msg file is working! ******"
 
-exit 1
