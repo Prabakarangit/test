@@ -8,3 +8,5 @@
 # To enable this hook, rename this file to "pre-commit".
 
 echo "***** symlink pre-commit-msg file is working! ******"
+
+exit 1
