@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "***** commit-msg file is working! ******"
+echo "***** prepare-commit-msg file is working! ******"
 
 local_branch="$(git rev-parse --abbrev-ref HEAD)"
 
 commit_message_file=$1
 
 MESSAGE=$(cat $commit_message_file)
-TICKET=$(git rev-parse --abbrev-ref HEAD | grep -Eo '^(\w+/)?(\w+[-_])?[0-9]+' | grep -Eo '(\w+[-])?[0-9]+' | tr "[:lower:]" "[:upper:]")
+TICKET=$(git rev-parse --abbrev-ref HEAD | grep -Eo '^(\w+/)?(\w+[-_])?[0-9]+' | grep -Eo '(\w+[-])?[0-9]+' )
 echo $TICKET
 
 if [[ $TICKET == "" || "$MESSAGE" == "$TICKET"* ]];then
