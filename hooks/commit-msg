@@ -7,6 +7,18 @@ local_branch="$(git rev-parse --abbrev-ref HEAD)"
 commit_message_file=$1
 
 
+MESSAGE=$(cat $commit_message_file)
+TICKET=$(git rev-parse --abbrev-ref HEAD | grep -Eo '^(\w+/)?(\w+[-_])?[0-9]+' | grep -Eo '(\w+[-])?[0-9]+' | tr "[:lower:]" "[:upper:]")
+echo $TICKET
+
+if [[ $TICKET == "" || "$MESSAGE" == "$TICKET"* ]];then
+  exit 0;
+fi
+
+echo "$TICKET $MESSAGE" > $commit_message_file
+
+
+
 # Throw error if the message is empty
 if [[ -z $(grep '[^[:space:]]' $commit_message_file) ]] ; then
     echo "You can't just commit without a message !!" >&2
@@ -15,9 +27,11 @@ fi
 
 # regex to validate in commit msg
 commit_regex='(ALS-[0-9]+)'
-error_msg="Aborting commit. Your commit message is missing either a JIRA Issue ('WAP-1111') or 'Merge'"
+error_msg="Aborting commit. Your commit message is missing either a JIRA Issue ('ALS-1111')"
 
 if ! grep -iqE "$commit_regex" "$commit_message_file"; then
     echo "$error_msg" >&2
     exit 1
 fi
+
+
