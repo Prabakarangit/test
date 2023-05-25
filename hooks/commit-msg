@@ -19,6 +19,7 @@ echo "$TICKET $MESSAGE" > $commit_message_file
 
 
 
+
 # Throw error if the message is empty
 if [[ -z $(grep '[^[:space:]]' $commit_message_file) ]] ; then
     echo "You can't just commit without a message !!" >&2
@@ -26,7 +27,7 @@ if [[ -z $(grep '[^[:space:]]' $commit_message_file) ]] ; then
 fi
 
 # regex to validate in commit msg
-commit_regex='(ALS-[0-9]+)'
+commit_regex='(TEST-[0-9]+)'
 error_msg="Aborting commit. Your commit message is missing either a JIRA Issue ('ALS-1111')"
 
 if ! grep -iqE "$commit_regex" "$commit_message_file"; then
